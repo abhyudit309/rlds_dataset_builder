@@ -101,13 +101,9 @@ class BerkeleyCableRoutingQna(tfds.core.GeneratorBasedBuilder):
                 steps.append(step_numpy)
 
             # create output data sample
-            file_path = episode['episode_metadata']['file_path'].numpy().decode()
-            output = {
-                'steps': steps,
-                'episode_metadata': {
-                    'file_path': file_path
-                }
-            }
+            file_path = f"{split}-{episode_idx}"
+            # no episode metadata to extract from
+            output = {'steps': steps}
 
             return file_path, output
 

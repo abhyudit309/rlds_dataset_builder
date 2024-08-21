@@ -101,7 +101,8 @@ class AustinSailorQna(tfds.core.GeneratorBasedBuilder):
                 steps.append(step_numpy)
 
             # create output data sample
-            file_path = episode['episode_metadata']['file_path'].numpy().decode()
+            # just taking the metadata gives hash key error
+            file_path = f"{split}-{episode_idx}"
             output = {
                 'steps': steps,
                 'episode_metadata': {

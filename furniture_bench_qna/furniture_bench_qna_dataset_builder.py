@@ -102,10 +102,14 @@ class FurnitureBenchQna(tfds.core.GeneratorBasedBuilder):
 
             # create output data sample
             file_path = episode['episode_metadata']['file_path'].numpy().decode()
+            furniture = episode['episode_metadata']['furniture'].numpy().decode()
+            initial_randomness = episode['episode_metadata']['initial_randomness'].numpy().decode()
             output = {
                 'steps': steps,
                 'episode_metadata': {
-                    'file_path': file_path
+                    'file_path': file_path,
+                    'furniture': furniture,
+                    'initial_randomness': initial_randomness
                 }
             }
 
