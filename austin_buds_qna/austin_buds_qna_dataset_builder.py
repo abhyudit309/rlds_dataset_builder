@@ -59,7 +59,7 @@ class AustinBudsQna(tfds.core.GeneratorBasedBuilder):
         Define data splits.
         """
         train_episodes = load_all_trajectories(self.oxe_dataset_name, self.train_split, self.num_train_episodes)
-        val_episodes = load_all_trajectories(self.oxe_dataset_name, self.val_split, self.num_val_episodes)
+        # val_episodes = load_all_trajectories(self.oxe_dataset_name, self.val_split, self.num_val_episodes)
 
         return {
             self.train_split: self._generate_examples(self.train_split, train_episodes),
