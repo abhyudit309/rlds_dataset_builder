@@ -89,6 +89,15 @@ class StanfordHydraQna(tfds.core.GeneratorBasedBuilder):
                 # numpy arrays or strings and not tensors
                 step_numpy = convert_nested_dict_to_numpy(step)
 
+                # Images are in BGR. Convert them to RGB!
+                primary_image = step_numpy['observation']['image']
+                primary_image_rgb = primary_image[..., ::-1]
+                step_numpy['observation']['image'] = primary_image_rgb
+
+                wrist_image = step_numpy['observation']['wrist_image']
+                wrist_image_rgb = wrist_image[..., ::-1]
+                step_numpy['observation']['wrist_image'] = wrist_image_rgb
+
                 # Add QnA information for each frame
                 qna: Dict = qna_data[str(frame)]
                 qna_pairs = []
